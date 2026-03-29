@@ -74,3 +74,5 @@ extra:
 
 extra_css:
   - assets/stylesheets/overrides.css
+extra_javascript:
+  - assets/javascripts/toast.js

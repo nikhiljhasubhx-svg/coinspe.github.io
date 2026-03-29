@@ -10,3 +10,94 @@
 .md-typeset table {
   font-size: 0.95rem;
 }
+
+.hero {
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 1.5rem;
+  background: radial-gradient(circle at top, rgba(67, 56, 202, 0.15), rgba(6, 182, 212, 0.05));
+  border: 1px solid rgba(67, 56, 202, 0.15);
+}
+
+.hero__eyebrow {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+}
+
+.hero__actions .md-button + .md-button {
+  margin-left: 0.5rem;
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.cards--three {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.cards li {
+  list-style: none;
+  padding: 1.25rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 1rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.07);
+}
+
+.cards li strong {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.toast {
+  position: relative;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.toast__badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0f766e;
+  margin-right: 0.4rem;
+}
+
+.toast__content {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.toast__close {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 0.3rem;
+}
+
+@media screen and (max-width: 640px) {
+  .hero {
+    padding: 1.5rem;
+  }
+  .toast {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

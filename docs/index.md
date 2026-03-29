@@ -1,30 +1,75 @@
 # Coinspe Payment Gateway
 
-**Merchant API Reference · Version 1.0.0.2 · JWT + HMAC Authentication**
+<div class="hero hero--coinspe" markdown>
+<p class="hero__eyebrow">Merchant API Reference · Version 1.0.0.2 · JWT + HMAC</p>
+<h1>Crypto-native payments with enterprise guardrails.</h1>
+<p>Create and monitor payment links, wire-up callbacks, and stay in sync with live market rates across production and UAT.</p>
+<div class="hero__actions">
+  <a class="md-button md-button--primary" href="getting-started/quickstart/">Launch Quickstart</a>
+  <a class="md-button" href="api-reference/rest-endpoints/">Browse API Reference</a>
+</div>
+</div>
 
-| Environment | Base URL |
-| --- | --- |
-| Production | `https://api.coinspe.com` |
-| UAT | `https://uat.coinspe.com` |
+<div class="toast" data-toast markdown>
+  <div class="toast__content">
+    <span class="toast__badge">Status</span>
+    <strong>PROD</strong> is healthy · <code>https://api.coinspe.com</code> · JWT TTL 30s
+  </div>
+  <button class="toast__close" data-toast-close aria-label="Dismiss notification">×</button>
+</div>
 
-Coinspe PG lets you create shareable crypto payment links, track their lifecycle, and react to webhook callbacks. Use this site as the canonical source of truth for authentication rules, endpoint contracts, and operational guidance.
+## Environments
 
-## Quick navigation
+| Environment | Base URL | Notes |
+| --- | --- | --- |
+| Production | `https://api.coinspe.com` | Live traffic, monitored 24/7. |
+| UAT | `https://uat.coinspe.com` | Mirrors production features for certification. |
 
-| Topic | Description |
-| --- | --- |
-| [Quickstart](getting-started/quickstart.md) | Log in, sync time, and fire your first link request. |
-| [Authentication](getting-started/authentication.md) | JWT bearer token issuance + HMAC signature rules. |
-| [API Overview](api-reference/overview.md) | Supported environments and endpoint catalog. |
-| [REST Endpoints](api-reference/rest-endpoints.md) | Detailed request/response schemas for every call. |
-| [Webhooks](api-reference/webhooks.md) | Callback payloads and validation guidance. |
-| [Errors](guides/errors.md) | HTTP status catalog and troubleshooting tips. |
-| [SDKs](guides/sdks.md) | Language helpers for signature generation and polling. |
-| [Changelog](resources/changelog.md) | Release notes for the docs and public API. |
+> Use [`GET /api/timestamp`](api-reference/rest-endpoints.md#fetch-server-time) before signing requests—Coinspe enforces ±30 seconds drift.
+
+## What’s inside
+
+<div class="cards cards--three" markdown>
+
+-   :key: **Authentication & security**  
+    HMAC signature rules, bearer-token lifecycle, and timestamp drift handling.  
+    [:material-lock: Authentication](getting-started/authentication.md)
+
+-   :material-link-variant: **Payment links**  
+    Create, monitor, and paginate payment links across receive/send flows.  
+    [:material-api: REST Endpoints](api-reference/rest-endpoints.md)
+
+-   :material-webhook: **Callbacks**  
+    Webhook payloads, signature verification, and reconciliation best practices.  
+    [:material-bell-outline: Webhooks](api-reference/webhooks.md)
+
+-   :material-chart-line: **Market data**  
+    Real-time buy/sell rates with receive/send logic explained.  
+    [:material-currency-usd: Market Prices](api-reference/rest-endpoints.md#crypto-market-prices)
+
+-   :beetle: **Errors & troubleshooting**  
+    HTTP status catalog, envelope format, and support escalation checklist.  
+    [:material-alert-circle: Error Guide](guides/errors.md)
+
+-   :material-history: **Changelog**  
+    Track what changed in each release of the public API & docs.  
+    [:material-timeline-clock: Changelog](resources/changelog.md)
+
+</div>
+
+## Operational checklist
+
+1. **Sync time** – Call `/api/timestamp` and adjust clocks if drift > 30s.
+2. **Sign in** – Generate `HMAC-SHA256(timestamp, secret_key)` and call `/api/v1/login`.
+3. **Issue links** – `POST /api/v1/payment-gateway/create-link` with redirect + callback URLs.
+4. **Monitor status** – Poll `/payment-link/{token}` or process webhook callbacks.
+5. **Audit** – Store `request_id`, webhook payloads, and reconcile before fulfilling.
 
 ## Getting help
 
-- Email: [support@coinspe.com](mailto:support@coinspe.com)
-- Site: [www.coinspe.com](https://www.coinspe.com)
+!!! info "Coinspe Support"
+    - Email: [support@coinspe.com](mailto:support@coinspe.com)  
+    - Pager (critical): via dashboard  
+    - Docs feedback? Create an issue in [`coinspe/coinspe.github.io`](https://github.com/coinspe/coinspe.github.io)
 
-Need something that is not covered yet? Open an issue in [`coinspe/coinspe.github.io`](https://github.com/coinspe/coinspe.github.io) or reach out to support.
+For roadmap discussions or partner enablement, reach out to your Coinspe solutions engineer.
